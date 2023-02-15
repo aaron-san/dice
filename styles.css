@@ -153,8 +153,8 @@ body {
 }
 
 .roll[disabled] {
-  display: hidden;
-  color: #eeeeee;
+  visibility: hidden;
+  color: none;
   border: inherit;
   cursor: auto;
 }

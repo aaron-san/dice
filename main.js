@@ -10,7 +10,8 @@ let randomDice = () => {
 const elem = document.querySelector(".dice");
 let randomNum;
 const rollD = () => {
-  rollBtn.disabled = true;
+  const rollBtn = document.querySelector(".roll");
+  // rollBtn.disabled = true;
   let id = null;
 
   let destinationX = 0;
@@ -20,11 +21,9 @@ const rollD = () => {
   let rotationY = 0;
   clearInterval(id);
 
-  // Set interval
-  id = setInterval(frame, 0.1);
   randomNum = randomDice();
 
-  const nRotations = 3;
+  const nRotations = 4;
   switch (randomNum) {
     case 1:
       destinationX = nRotations * 360 + 0;
@@ -56,6 +55,11 @@ const rollD = () => {
 
   const incrementX = (destinationX - rotationX) / 700;
   const incrementY = (destinationY - rotationY) / 700;
+
+  // Disable button
+  // rollBtn.style.visibility = "hidden";
+
+  // Define function that creates animation frames
   function frame() {
     if (rotationX < destinationX + 1) {
       rotationX = rotationX + incrementX;
@@ -65,12 +69,15 @@ const rollD = () => {
     }
 
     if (rotationX >= destinationX + 1 && rotationY >= destinationY + 1) {
-      clearInterval(id);
-      rollBtn.disabled = false;
+      // rollBtn.style.visibility = "visible";
+      // rollBtn.disabled = false;
     } else {
       elem.style.transform = `rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
     }
   }
+
+  // Set interval
+  id = setInterval(frame, 0.1);
 };
 
 rollBtn.addEventListener("click", rollD);
